@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ფერების თარჯიმანი v10.9 (თეთრი JPG ფონი)</title>
+    
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>🎨 ფერების თარჯიმანი 🎨</h2>
+        <div id="masterKeyStatus">იტვირთება 1.5M+ ბაზა...</div>
+
+        <div class="main-grid">
+            
+            <div class="converter-group">
+                <label for="sentenceInput">📚 ტექსტი (ENCODE):</label>
+                <textarea id="sentenceInput" placeholder="შეიყვანეთ ტექსტი..."></textarea>
+                <button id="toColorsButton" disabled>ფერებად გადაქცევა</button>
+                
+                <label for="colorSwatchesContainer" style="margin-top:10px;">ფერების ვიზუალიზაცია:</label>
+                <div id="colorSwatchesContainer"></div>
+                
+                <button id="toggleSwatchesButton" class="toggle-swatches" style="display: none;">▶️ გრაფის გახსნა</button>
+                
+                <label for="colorsOutput" style="margin-top:10px;">ფერების კოდები (დასაკოპირებლად):</label>
+                <div class="copy-group">
+                    <textarea id="colorsOutput" readonly></textarea>
+                    <button id="copyHexButton">📋 კოპირება</button>
+                </div>
+
+                <button id="exportSVGButton" class="export-button" disabled>💾 SVG ექსპორტი</button>
+                <button id="exportJPGButton" class="export-jpg-button" disabled>📸 JPG ექსპორტი (1000x1000px)</button>
+            </div>
+
+            <div class="converter-group">
+                <label style="text-align: center;">🖍️ ფერები (DECODE):</label>
+                <label for="svgUploader" class="import-label">⬆️ SVG იმპორტი</label>
+                <input type="file" id="svgUploader" accept=".svg" style="display: none;">
+                <p style="font-weight: 600; margin: 10px 0 5px 0; color: #bdbdbd;">-- ან --</p>
+                <label for="colorsInput" style="margin-top:5px;">შეიყვანე ფერების კოდები (გამოყავი space-ით):</label>
+                <textarea id="colorsInput" placeholder="#... #... #..."></textarea>
+                <button id="toSentenceButton" disabled>ტექსტად გადაქცევა</button>
+                <label for="sentenceOutput" style="margin-top:10px;">წინადადება:</label>
+                <textarea id="sentenceOutput" readonly></textarea>
+            </div>
+
+        </div> 
+    </div>
+        
+<script src="script.js"></script>
+
+</body>
+</html>

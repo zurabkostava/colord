@@ -1,0 +1,231 @@
+/* --- 🌑 DARK MODE CSS --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.container {
+    background-color: #1e1e1e;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    width: 95%;
+    max-width: none;
+    text-align: center;
+}
+h2 {
+    color: #00bcd4;
+    margin-top: 0;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #00bcd4;
+    padding-bottom: 10px;
+    margin-bottom: 1.5rem;
+}
+
+/* --- 📐 ორსვეტიანი განლაგება (GRID) --- */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.converter-group {
+    margin-bottom: 0;
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    text-align: left;
+    color: #bdbdbd;
+}
+
+/* --- კოპირების ჯგუფის სტილი --- */
+.copy-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+.copy-group textarea {
+    flex-grow: 1;
+}
+
+/* --- 📏 ტექსტარეების სიმაღლის გაზრდა --- */
+#sentenceInput, #colorsInput, #colorsOutput, #sentenceOutput {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: Consolas, "Courier New", monospace;
+    resize: vertical;
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+#sentenceInput, #sentenceOutput {
+    min-height: 180px;
+}
+#colorsInput, #colorsOutput {
+    min-height: 120px;
+}
+.copy-group textarea {
+    min-height: 48px;
+}
+
+/* --- ღილაკების სტილები --- */
+button {
+    background-color: #007aff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+    width: 100%;
+    margin-top: 10px;
+}
+button.export-button {
+    background-color: #28a745;
+}
+button.export-jpg-button { /* ახალი JPG ღილაკის სტილი */
+    background-color: #dc3545;
+}
+button.toggle-swatches {
+    background-color: #f39c12;
+    color: #1e1e1e;
+    width: auto;
+    display: block;
+    margin: 10px auto 0 auto;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+}
+#copyHexButton {
+    width: 150px;
+    min-width: 150px;
+    margin: 0;
+    padding: 10px;
+    background-color: #6200EE;
+    transition: background-color 0.2s;
+}
+
+label.import-label {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #ff9800;
+    color: black;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+#masterKeyStatus {
+    font-size: 1.1rem;
+    font-weight: 600;
+    min-height: 20px;
+    background-color: #333;
+    border: 1px solid #444;
+    color: #00bcd4;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+}
+
+/* --- 🎨 SWATCHES კონტროლი --- */
+#colorSwatchesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    min-height: 40px;
+    align-items: flex-start;
+    background-color: #333;
+    max-height: 80px; /* 2 მწკრივი */
+    overflow-y: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+/* 1. გრაფის გაფართოების კლასი */
+#colorSwatchesContainer.expanded {
+    max-height: 1000px; /* საკმარისად დიდი, რომ ყველაფერი ჩანდეს */
+}
+
+/* **1. სიტყვის ბლოკის (კუბიკის) დეფოლტი სტილი** */
+.color-swatch {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #1e1e1e;
+    border-radius: 4px; /* ოდნავ მომრგვალებული კუთხეები */
+    transition: transform 0.1s;
+    flex-shrink: 0;
+}
+
+/* **2. სასვენი ნიშნების ვიწრო და დაბალი სტილი (მრგვალი წერტილი)** */
+.color-swatch-punctuation {
+    width: 8.75px; /* 35px / 4 */
+    height: 8.75px; /* 35px / 4 */
+    border-radius: 50%; /* მრგვალი წერტილი */
+    margin: 13.125px 0; /* ცენტრში მოსათავსებლად: (35-8.75)/2 = 13.125 */
+    flex-shrink: 0;
+}
+
+/* **3. ხაზის გაწყვეტის კუბიკები (ვიზუალური გამყოფები) - ხაზის გაწყვეტა** */
+.color-swatch-linebreak {
+    width: 2px;
+    height: 35px;
+    background-color: #ff4500 !important; /* თამამი წითელი */
+    border-radius: 1px;
+    flex-shrink: 0;
+}
+
+/* **4. აბზაცის გაწყვეტის კუბიკები (ვიზუალური გამყოფები) - აბზაცის გაწყვეტა** */
+.color-swatch-paragraphbreak {
+    width: 5px; /* სქელი ხაზი */
+    height: 35px;
+    background-color: #ff0000 !important; /* უფრო თამამი წითელი */
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+
+/* --- 📱 რესპონსივობა (Media Queries) --- */
+@media (max-width: 900px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+    .converter-group {
+        margin-bottom: 20px;
+    }
+    .copy-group {
+        flex-direction: column;
+    }
+    .copy-group textarea {
+        min-height: 100px;
+    }
+    #copyHexButton {
+        width: 100%;
+        min-width: 100%;
+        margin-top: 10px;
+    }
+}

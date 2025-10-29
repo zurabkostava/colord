@@ -104,7 +104,7 @@ if (finalIndex === -1 && (wordRegex.test(lowerToken) || numbers.includes(lowerTo
     console.log(`✅ [Local Master Key Expanded] სიტყვა: "${lowerToken}" დაემატა ლოკალურად ინდექსით: ${finalIndex}`);
     
     // 2. ახალი სიტყვის გაგზავნა Webhook-ზე შესანახად
-    const WEBHOOK_URL = 'https://webhook.site/abc-123-xyz'; // <-- ჩასვით თქვენი ბმული!
+    const WEBHOOK_URL = 'https://webhook.site/dc924964-1cf1-469c-8ac9-504296bc7fc7'; // <-- ჩასვით თქვენი ბმული!
 
     fetch(WEBHOOK_URL, {
         method: 'POST',

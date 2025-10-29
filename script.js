@@ -95,6 +95,7 @@
                 const prev = rawTokens[i - 1];
                 const prevActual = tokensWithControlSymbols[tokensWithControlSymbols.length - 1];
                 const isCurrentPunctuation = punctuationRegex.test(current) && current !== '\n';
+
                 // 3.1. $⌋$ ლოგიკა: აბზაცის ნიშანი
                 if (current === PARAGRAPH_BREAK) {
                     tokensWithControlSymbols.push(PARAGRAPH_BREAK);
@@ -132,33 +133,6 @@
                     tokensWithControlSymbols.push(SEPARATOR_SYMBOL);
                     continue;
                 }
-                 if (finalIndex === -1 && (wordRegex.test(lowerToken) || numbers.includes(lowerToken) || tokenRegex.test(lowerToken)) && lowerToken !== '\n' && lowerToken !== SEPARATOR_SYMBOL && lowerToken !== LEADING_JOINER && lowerToken !== PARAGRAPH_BREAK) {
-    
-    // 1. სიტყვის ლოკალურად დამატება (მხოლოდ მიმდინარე სესიისთვის!)
-    wordDatabase.push(lowerToken);
-    finalIndex = wordDatabase.length - 1;
-
-    console.log(`✅ [Local Master Key Expanded] სიტყვა: "${lowerToken}" დაემატა ლოკალურად ინდექსით: ${finalIndex}`);
-    
-    // 2. ახალი სიტყვის გაგზავნა Webhook-ზე შესანახად
-    const WEBHOOK_URL = 'https://webhook.site/dc924964-1cf1-469c-8ac9-504296bc7fc7'; // <-- ჩასვით თქვენი ბმული!
-
-    fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-            new_word: lowerToken,
-            timestamp: new Date().toISOString()
-        })
-    })
-    .then(() => { 
-        console.log("✅ ახალი სიტყვა წარმატებით გაიგზავნა ლოგირებისთვის."); 
-        document.getElementById('masterKeyStatus').textContent = `Master Key ჩაიტვირთა! (${wordDatabase.length} ჩანაწერი) + ახალი სიტყვა ("${lowerToken}") გაიგზავნა ლოგზე!`;
-    })
-    .catch(err => console.error("❌ Webhook-ზე გაგზავნის შეცდომა:", err));
-}
                 
                 // 3.6. ყველა სხვა შემთხვევა
                 tokensWithControlSymbols.push(current);
